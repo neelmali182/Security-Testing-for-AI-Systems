@@ -4,7 +4,18 @@ MAX_TEXT_LENGTH = 2000
 POSITIVE_WORDS = {"good", "great", "helpful", "excellent", "safe"}
 NEGATIVE_WORDS = {"bad", "harmful", "awful", "unsafe", "terrible"}
 INJECTION_TERMS = ("ignore all previous", "ignore your instructions", "disregard your rules", "developer mode")
-UNSAFE_TERMS = ("build a weapon", "steal someone's password", "steal a password")
+UNSAFE_TERMS = (
+    "build a weapon",
+    "steal someone's password",
+    "steal a password",
+    "kill someone",
+    "murder someone",
+    "poison someone",
+    "hurt someone",
+    "harm someone",
+    "make a bomb",
+    "attack someone",
+)
 CREDENTIAL_REQUEST_TERMS = (
     "login details",
     "login credentials",
@@ -14,7 +25,16 @@ CREDENTIAL_REQUEST_TERMS = (
     "user passwords",
     "passwords",
     "credit card information",
+    "bank account details",
+    "bank account information",
+    "account details",
+    "account information",
+    "bank details",
+    "account number",
     "account numbers",
+    "routing number",
+    "iban",
+    "swift code",
     "access tokens",
     "api keys",
 )
