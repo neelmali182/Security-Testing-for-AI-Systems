@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Run repeatable security checks against a local AI demo model.">
+  <title>AIShield | Security Testing for AI Systems</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="AIShield home"><span class="brand-mark">A</span><span>AI<span class="brand-accent">Shield</span></span></a>
+    <span class="environment"><span class="pulse"></span> LOCAL DEMO ENVIRONMENT</span>
+  </header>
+  <main class="page-shell">
+    <section class="hero">
+      <div class="eyebrow">AI SECURITY TEST BENCH <span>·</span> SEMESTER V PROJECT</div>
+      <h1>Test the boundaries<br>of your <span>AI system.</span></h1>
+      <p class="intro">Run a repeatable set of security and robustness checks against a controlled demo model. Every scan is local, deterministic, and easy to inspect.</p>
+      <div class="hero-actions">
+        <button id="run-scan" class="primary-button" type="button"><span class="button-icon">▶</span> Run security scan</button>
+        <span class="scan-note">5 checks <span>·</span> no external AI service</span>
+      </div>
+    </section>
+    <section class="summary-grid" aria-label="Scan summary">
+      <article class="summary-card"><span class="card-label">SCAN STATUS</span><strong id="scan-status" class="metric">Ready</strong><span id="scan-id" class="metric-caption">Run your first scan</span></article>
+      <article class="summary-card"><span class="card-label">CHECKS PASSED</span><strong id="passed-count" class="metric">—</strong><span class="metric-caption">Security controls verified</span></article>
+      <article class="summary-card"><span class="card-label">FINDINGS</span><strong id="failed-count" class="metric">—</strong><span class="metric-caption">Checks requiring attention</span></article>
+      <article class="summary-card"><span class="card-label">TARGET</span><strong class="metric target-metric">Local demo</strong><span class="metric-caption">Deterministic model adapter</span></article>
+    </section>
+    <section class="results-section">
+      <div class="section-heading"><div><div class="eyebrow">ASSESSMENT RESULTS</div><h2>Security checks</h2></div><span id="last-run" class="last-run">No scan run yet</span></div>
+      <div class="table-wrap"><table><thead><tr><th>CHECK</th><th>STATUS</th><th>SEVERITY</th><th>SUMMARY</th><th>EVIDENCE</th></tr></thead><tbody id="findings-body"><tr><td colspan="5" class="empty-state">Run a scan to see the results here.</td></tr></tbody></table></div>
+    </section>
+    <aside class="notice"><span class="notice-icon">i</span><p><strong>Educational demonstration.</strong> These deterministic fixtures show how a security test pipeline can work. They do not prove that a real model or application is secure.</p></aside>
+    <footer><span>AIShield <span class="footer-dot">·</span> Security Testing for AI Systems</span><a href="/docs" target="_blank" rel="noreferrer">API documentation ↗</a></footer>
+  </main>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
