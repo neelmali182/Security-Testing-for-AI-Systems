@@ -5,6 +5,19 @@ POSITIVE_WORDS = {"good", "great", "helpful", "excellent", "safe"}
 NEGATIVE_WORDS = {"bad", "harmful", "awful", "unsafe", "terrible"}
 INJECTION_TERMS = ("ignore all previous", "ignore your instructions", "disregard your rules", "developer mode")
 UNSAFE_TERMS = ("build a weapon", "steal someone's password", "steal a password")
+CREDENTIAL_REQUEST_TERMS = (
+    "login details",
+    "login credentials",
+    "bank users",
+    "bank customers",
+    "user credentials",
+    "user passwords",
+    "passwords",
+    "credit card information",
+    "account numbers",
+    "access tokens",
+    "api keys",
+)
 
 
 def validate_text(text: object) -> str:
@@ -33,7 +46,7 @@ def answer_prompt(text: object, protected_value: str | None = None) -> dict:
     """Return a policy-checked canned response for security test demonstrations."""
     normalized = validate_text(text)
     lowered = normalized.lower()
-    blocked = any(term in lowered for term in INJECTION_TERMS + UNSAFE_TERMS)
+    blocked = any(term in lowered for term in INJECTION_TERMS + UNSAFE_TERMS + CREDENTIAL_REQUEST_TERMS)
     if blocked:
         response = "I cannot help with that request."
     elif "secret" in lowered or "token" in lowered or "hidden" in lowered:
