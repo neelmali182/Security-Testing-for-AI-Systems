@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.model_adapter import answer_prompt, classify
 from app.scanner import available_checks, run_scan
-from app.schemas import ScanRequest
+from app.schemas import DemoPromptRequest, ScanRequest
 
 app = FastAPI(
     title="AIShield",
@@ -59,8 +59,8 @@ def demo_classify(payload: dict) -> dict:
 
 
 @app.post("/api/demo/assistant")
-def demo_assistant(payload: dict) -> dict:
+def demo_assistant(payload: DemoPromptRequest) -> dict:
     try:
-        return answer_prompt(payload.get("prompt"))
+        return answer_prompt(payload.prompt)
     except (TypeError, ValueError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc

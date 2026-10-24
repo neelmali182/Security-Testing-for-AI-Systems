@@ -1,5 +1,6 @@
 const runButton = document.querySelector('#run-scan');
 const findingsBody = document.querySelector('#findings-body');
+const promptButton = document.querySelector('#test-prompt');
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -61,3 +62,39 @@ async function runScan() {
 }
 
 runButton.addEventListener('click', runScan);
+
+async function testPrompt() {
+  const prompt = document.querySelector('#custom-prompt').value;
+  const errorBox = document.querySelector('#prompt-error');
+  const resultBox = document.querySelector('#prompt-result');
+  errorBox.textContent = '';
+  resultBox.hidden = true;
+  if (!prompt.trim()) {
+    errorBox.textContent = 'Enter a prompt to test.';
+    return;
+  }
+
+  promptButton.disabled = true;
+  promptButton.textContent = 'Checking…';
+  try {
+    const response = await fetch('/api/demo/assistant', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt }),
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.detail?.[0]?.msg || result.detail || 'The prompt could not be checked.');
+    document.querySelector('#prompt-verdict').textContent = result.blocked ? 'BLOCKED BY DEMO POLICY' : 'ALLOWED BY DEMO POLICY';
+    document.querySelector('#prompt-verdict').className = result.blocked ? 'verdict-blocked' : 'verdict-allowed';
+    document.querySelector('#prompt-verdict-detail').textContent = result.blocked ? 'The rule-based guard refused this prompt.' : 'No demo rule matched this prompt.';
+    document.querySelector('#prompt-response').textContent = result.response;
+    resultBox.hidden = false;
+  } catch (error) {
+    errorBox.textContent = error.message;
+  } finally {
+    promptButton.disabled = false;
+    promptButton.textContent = 'Test prompt';
+  }
+}
+
+promptButton.addEventListener('click', testPrompt);

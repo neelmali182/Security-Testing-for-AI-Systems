@@ -11,6 +11,12 @@ class ScanRequest(BaseModel):
     checks: list[str] | None = Field(default=None, max_length=10)
 
 
+class DemoPromptRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    prompt: str = Field(min_length=1, max_length=2000)
+
+
 class Finding(BaseModel):
     check_id: str
     name: str

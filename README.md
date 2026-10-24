@@ -8,6 +8,7 @@ AIShield is a small educational project for running repeatable security checks a
 
 - Serves a web dashboard at `http://localhost:8000`.
 - Runs five checks: input validation, harmless-input robustness, prompt-injection resistance, synthetic secret leakage, and unsafe-output policy.
+- Lets you enter a custom prompt in the dashboard and see how the deterministic demo policy responds.
 - Returns structured findings with status, severity, evidence, and recommendations.
 - Saves each scan as JSON under `reports/` and provides it at `GET /api/scans/{scan_id}`.
 - Runs pytest checks in Jenkins, builds a Docker image, and deploys the demonstration app from the `main` branch after the tests pass.
@@ -52,6 +53,8 @@ Open these pages:
 - Health: <http://localhost:8000/health>
 
 Click **Run security scan**. The dashboard should display five findings and a scan ID. To run the automated tests locally, open another PowerShell window in the project folder and run:
+
+You can also use **Try your own prompt** to submit a prompt to the local rule-based guard. It returns a canned demonstration response; it does not send your prompt to a real AI model or external service.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
